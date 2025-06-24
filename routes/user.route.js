@@ -1,10 +1,10 @@
 const express = require("express");
 const { authenticate } = require("../middlewares/auth.middleware");
+const { getUsers, getUser } = require("../controllers/user.controller");
 
 const router = express.Router();
 
-router.get("/profile", authenticate, (req, res) => {
-  res.json({ message: `Selamat datang ${req.user.username}` });
-});
+router.get("/", authenticate, getUsers);
+router.get("/:id", authenticate, getUser);
 
 module.exports = router;
